@@ -20,6 +20,7 @@ local CAMERA_SPEEDS = {
 	{mark = math.huge, speed = 0}
 }
 
+local H_BORDER = 48
 
 function GameManager:initialize()
 	self.platforms = {}
@@ -175,12 +176,14 @@ function GameManager:spawn(platformType, num, y)
 		isSpiked = true
 	end
 
+
 	for i = 1, num do
-		local x = (48 + math.random() * (love.graphics.getWidth() - 96)) / num +
+		local x = (H_BORDER + math.random() * (love.graphics.getWidth() - H_BORDER * 2)) / num +
 				love.graphics.getWidth() / num * (i-1)
 		local platform = Platform(x, y, isSpiked)
 		table.insert(self.platforms, platform)
 
+		-- Spawn random coins if not spike
 		if not isSpiked then
 			-- Spawning hearts
 			self.platformNumToSpawnHeart = self.platformNumToSpawnHeart - 1

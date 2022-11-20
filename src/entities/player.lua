@@ -125,6 +125,24 @@ function Player:move(dt)
 	end
 end
 
+function Player:getHorizontalMoveDir()
+	local dirX = 0
+
+	if MODE == 'human' then
+		if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
+			dirX = dirX - 1
+		end
+		if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
+			dirX = dirX + 1
+		end
+
+	elseif MODE == 'ai' then
+
+	end
+
+	return dirX
+end
+
 function Player:animate(dt)
 	self.animator:setCurrentState('idle')
 	if self.vy ~= 0 then
